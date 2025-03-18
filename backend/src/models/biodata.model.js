@@ -5,6 +5,7 @@ const biodataSchema = new mongoose.Schema(
         userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
+            required: true,
         },
         name: {
             type: String,
@@ -16,9 +17,6 @@ const biodataSchema = new mongoose.Schema(
             unique: true,
         },
         phone: {
-            type: String,
-        },
-        school: {
             type: String,
         },
         college: {

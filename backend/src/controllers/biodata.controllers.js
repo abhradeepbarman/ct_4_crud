@@ -3,9 +3,9 @@ import Biodata from "../models/biodata.model.js";
 export const createBiodata = async (req, res) => {
     try {
         const userId = req.user._id;
-        const { name, email, phone, school, college, address } = req.body;
+        const { name, email, phone, college, address } = req.body;
 
-        if (!name || !email || !address) {
+        if (!name || !email || !phone || !college || !address) {
             // only these fields are mandatory
             return res.status(400).json({
                 success: false,
@@ -17,10 +17,9 @@ export const createBiodata = async (req, res) => {
             name,
             email,
             phone,
-            school,
             college,
             address,
-            user: userId,
+            userId,
         });
 
         return res.status(201).json({
@@ -42,7 +41,7 @@ export const getBiodataById = async (req, res) => {
         const userId = req.user._id;
         const { id: biodataId } = req.params;
 
-        const biodata = await Biodata.findOne({ user: userId, _id: biodataId });
+        const biodata = await Biodata.findOne({ userId, _id: biodataId });
 
         if (!biodata) {
             return res.status(404).json({
@@ -69,7 +68,7 @@ export const getAllBiodata = async (req, res) => {
     try {
         const userId = req.user._id;
 
-        const biodatas = await Biodata.find({ user: userId });
+        const biodatas = await Biodata.find({ userId: userId });
 
         return res.status(200).json({
             success: true,
@@ -89,7 +88,7 @@ export const updateBiodata = async (req, res) => {
     try {
         const userId = req.user._id;
         const { id: biodataId } = req.params;
-        const { name, email, phone, school, college, address } = req.body;
+        const { name, email, phone, college, address } = req.body;
 
         if (!name || !email || !address) {
             // only these fields are mandatory
@@ -100,12 +99,11 @@ export const updateBiodata = async (req, res) => {
         }
 
         const biodata = await Biodata.findOneAndUpdate(
-            { user: userId, _id: biodataId },
+            { userId, _id: biodataId },
             {
                 name,
                 email,
                 phone,
-                school,
                 college,
                 address,
             },
@@ -139,7 +137,7 @@ export const deleteBiodata = async (req, res) => {
         const { id: biodataId } = req.params;
 
         const biodata = await Biodata.findOneAndDelete({
-            user: userId,
+            userId,
             _id: biodataId,
         });
 

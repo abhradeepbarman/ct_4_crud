@@ -3,6 +3,7 @@ import cors from "cors";
 import config from "./config/config.js";
 import connectDB from "./db/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import biodataRoutes from "./routes/biodata.routes.js";
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/biodata", authRoutes);
+app.use("/api/v1/biodata", biodataRoutes);
 
 connectDB()
     .then(() => {

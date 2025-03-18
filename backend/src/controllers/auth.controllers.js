@@ -41,7 +41,7 @@ export const registerController = async (req, res) => {
             name,
         };
         const accessToken = jwt.sign(payload, config.JWT_SECRET, {
-            expiresIn: "1d",
+            expiresIn: "1h",
         });
         const refreshToken = jwt.sign(payload, config.JWT_SECRET, {
             expiresIn: "7d",
@@ -55,13 +55,23 @@ export const registerController = async (req, res) => {
         user.refreshToken = undefined;
 
         // return response
-        return res.status(201).json({
-            success: true,
-            message: "User registered successfully",
-            user,
-            accessToken,
-            refreshToken,
-        });
+        return res
+            .status(201)
+            .cookie("accessToken", accessToken, {
+                httpOnly: true,
+                maxAge: 60 * 60 * 1000,
+            })
+            .cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: 7 * 24 * 60 * 60 * 1000,
+            })
+            .json({
+                success: true,
+                message: "User registered successfully",
+                user,
+                accessToken,
+                refreshToken,
+            });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -109,7 +119,7 @@ export const loginController = async (req, res) => {
             name: user.name,
         };
         const accessToken = jwt.sign(payload, config.JWT_SECRET, {
-            expiresIn: "1d",
+            expiresIn: "1h",
         });
         const refreshToken = jwt.sign(payload, config.JWT_SECRET, {
             expiresIn: "7d",
@@ -119,14 +129,27 @@ export const loginController = async (req, res) => {
         user.refreshToken = refreshToken;
         await user.save();
 
+        user.password = undefined;
+        user.refreshToken = undefined;
+
         // return response
-        return res.status(200).json({
-            success: true,
-            message: "User logged in successfully",
-            user,
-            accessToken,
-            refreshToken,
-        });
+        return res
+            .status(200)
+            .cookie("accessToken", accessToken, {
+                httpOnly: true,
+                maxAge: 60 * 60 * 1000,
+            })
+            .cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: 7 * 24 * 60 * 60 * 1000,
+            })
+            .json({
+                success: true,
+                message: "User logged in successfully",
+                user,
+                accessToken,
+                refreshToken,
+            });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -162,7 +185,7 @@ export const logoutController = async (req, res) => {
 
 export const refreshAccessTokenController = async (req, res) => {
     try {
-        const incomingRefreshToken = req.body?.refresh_token;
+        const incomingRefreshToken = req.body?.refreshToken;
 
         //validation
         if (!incomingRefreshToken) {
@@ -203,7 +226,7 @@ export const refreshAccessTokenController = async (req, res) => {
         };
 
         const accessToken = jwt.sign(payload, config.JWT_SECRET, {
-            expiresIn: "1d",
+            expiresIn: "1h",
         });
         const refreshToken = jwt.sign(payload, config.JWT_SECRET, {
             expiresIn: "7d",
@@ -213,14 +236,27 @@ export const refreshAccessTokenController = async (req, res) => {
         user.refreshToken = refreshToken;
         await user.save();
 
+        user.password = undefined;
+        user.refreshToken = undefined;
+
         // return response
-        return res.status(200).json({
-            success: true,
-            message: "User logged in successfully",
-            user,
-            accessToken,
-            refreshToken,
-        });
+        return res
+            .status(200)
+            .cookie("accessToken", accessToken, {
+                httpOnly: true,
+                maxAge: 60 * 60 * 1000,
+            })
+            .cookie("refreshToken", refreshToken, {
+                httpOnly: true,
+                maxAge: 7 * 24 * 60 * 60 * 1000,
+            })
+            .json({
+                success: true,
+                message: "User logged in successfully",
+                user,
+                accessToken,
+                refreshToken,
+            });
     } catch (error) {
         console.log(error);
         return res.status(500).json({

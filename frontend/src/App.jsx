@@ -1,17 +1,28 @@
 import { Route, Routes } from "react-router-dom";
+import EditForm from "./pages/EditForm";
+import Form from "./pages/Form";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Form from "./pages/Form";
-import EditForm from "./pages/EditForm";
+import Navbar from "./components/Navbar";
 import ProtectedRoutes from "./protectedRoutes/ProtectedRoutes";
+import { useState } from "react";
 
 const App = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     return (
         <div>
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route
+                    path="/login"
+                    element={<Login setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route
+                    path="/register"
+                    element={<Register setIsLoggedIn={setIsLoggedIn} />}
+                />
                 <Route
                     path="/"
                     element={
@@ -24,12 +35,12 @@ const App = () => {
                     path="/form"
                     element={
                         <ProtectedRoutes>
-                            <Form />
+                            <Form />{" "}
                         </ProtectedRoutes>
                     }
                 />
                 <Route
-                    path="/form/edit"
+                    path="/form/:id/edit"
                     element={
                         <ProtectedRoutes>
                             <EditForm />
