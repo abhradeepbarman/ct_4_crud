@@ -39,7 +39,7 @@ const Login = ({ setIsLoggedIn }) => {
             </h1>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="border p-5 rounded-md w-lg flex flex-col gap-3"
+                className="border p-5 rounded-md w-full md:w-lg flex flex-col gap-3"
             >
                 <div>
                     <label className="flex flex-col">
@@ -69,11 +69,6 @@ const Login = ({ setIsLoggedIn }) => {
                             placeholder="Enter your password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: {
-                                    value: 6,
-                                    message:
-                                        "Password must be at least 6 characters",
-                                },
                             })}
                             className="p-2 border border-gray-300 rounded-md"
                         />

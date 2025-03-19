@@ -55,7 +55,7 @@ const Home = () => {
                     Add Biodata
                 </button>
             </div>
-            <div className="border p-5 rounded-md w-xl flex flex-col gap-3">
+            <div className="border p-2 md:p-5 rounded-md w-full md:w-xl flex flex-col gap-3">
                 {biodatas.map((biodata) => (
                     <div
                         key={biodata._id}

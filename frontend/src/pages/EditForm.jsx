@@ -77,7 +77,7 @@ const EditForm = () => {
             </div>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="border p-5 rounded-md w-xl flex flex-col gap-3"
+                className="border p-5 rounded-md w-full md:w-xl flex flex-col gap-3"
             >
                 <h1 className="text-2xl font-semibold text-center underline">
                     Edit Biodata

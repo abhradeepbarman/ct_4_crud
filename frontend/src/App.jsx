@@ -12,7 +12,7 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
-        <div>
+        <div className="w-full min-h-screen">
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
                 <Route

@@ -40,7 +40,7 @@ const Register = ({ setIsLoggedIn }) => {
             </h1>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="border p-5 rounded-md w-lg flex flex-col gap-3"
+                className="border p-5 rounded-md w-full md:w-lg flex flex-col gap-3"
             >
                 <div>
                     <label className="flex flex-col">
