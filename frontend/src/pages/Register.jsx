@@ -55,7 +55,11 @@ const Register = ({ setIsLoggedIn }) => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.name && <span>{errors.name.message}</span>}
+                    {errors.name && (
+                        <span className="text-red-500">
+                            {errors.name.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -74,7 +78,11 @@ const Register = ({ setIsLoggedIn }) => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && (
+                        <span className="text-red-500">
+                            {errors.email.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -94,7 +102,11 @@ const Register = ({ setIsLoggedIn }) => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.password && <span>{errors.password.message}</span>}
+                    {errors.password && (
+                        <span className="text-red-500">
+                            {errors.password.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -113,7 +125,9 @@ const Register = ({ setIsLoggedIn }) => {
                         />
                     </label>
                     {errors.confirmPassword && (
-                        <span>{errors.confirmPassword.message}</span>
+                        <span className="text-red-500">
+                            {errors.confirmPassword.message}
+                        </span>
                     )}
                 </div>
                 <div className="text-sm">

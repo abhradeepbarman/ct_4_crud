@@ -58,7 +58,11 @@ const Login = ({ setIsLoggedIn }) => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && (
+                        <span className="text-red-500">
+                            {errors.email.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -73,7 +77,11 @@ const Login = ({ setIsLoggedIn }) => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.password && <span>{errors.password.message}</span>}
+                    {errors.password && (
+                        <span className="text-red-500">
+                            {errors.password.message}
+                        </span>
+                    )}
                 </div>
                 <div className="text-sm">
                     Don't have an account?{" "}

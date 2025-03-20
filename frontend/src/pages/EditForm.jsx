@@ -30,8 +30,7 @@ const EditForm = () => {
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
-        }
-        finally {
+        } finally {
             setLoading(false);
         }
     };
@@ -95,7 +94,11 @@ const EditForm = () => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.name && <span>{errors.name.message}</span>}
+                    {errors.name && (
+                        <span className="text-red-500">
+                            {errors.name.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -114,7 +117,11 @@ const EditForm = () => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && (
+                        <span className="text-red-500">
+                            {errors.email.message}
+                        </span>
+                    )}
                 </div>
                 <div>
                     <label className="flex flex-col">
@@ -129,7 +136,11 @@ const EditForm = () => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.phone && <span>{errors.phone.message}</span>}
+                    {errors.phone && (
+                        <span className="text-red-500">
+                            {errors.phone.message}
+                        </span>
+                    )}
                 </div>
 
                 <div>
@@ -145,7 +156,11 @@ const EditForm = () => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.college && <span>{errors.college.message}</span>}
+                    {errors.college && (
+                        <span className="text-red-500">
+                            {errors.college.message}
+                        </span>
+                    )}
                 </div>
 
                 <div>
@@ -161,7 +176,11 @@ const EditForm = () => {
                             className="p-2 border border-gray-300 rounded-md"
                         />
                     </label>
-                    {errors.address && <span>{errors.address.message}</span>}
+                    {errors.address && (
+                        <span className="text-red-500">
+                            {errors.address.message}
+                        </span>
+                    )}
                 </div>
 
                 <button
